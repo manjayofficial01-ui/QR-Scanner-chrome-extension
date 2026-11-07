@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "QR Scanner",
+  "version": "1.0.0",
+  "description": "Scan QR codes from images, your screen, or a live camera. Fully offline and private.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "QR Scanner",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

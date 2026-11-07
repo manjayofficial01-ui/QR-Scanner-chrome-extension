@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Scanner</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body class="popup">
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" id="brandMark"></span>
+        <span class="brand-name">QR <em>Scanner</em></span>
+      </div>
+      <div class="top-actions">
+        <button id="floatBtn" class="icon-btn" aria-label="Float window"></button>
+        <button id="soundBtn" class="icon-btn" aria-label="Toggle sound"></button>
+        <button id="historyBtn" class="icon-btn" aria-label="Scan history" title="Scan history"></button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="scanView" class="view">
+        <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Scan a QR image: drop, paste, or browse">
+          <div class="dz-grid"></div>
+          <i class="vf-corner tl"></i><i class="vf-corner tr"></i><i class="vf-corner bl"></i><i class="vf-corner br"></i>
+          <div class="scanline"></div>
+          <div class="dz-content">
+            <span class="dz-ring" id="dzRing"></span>
+            <p class="dz-title">Drop a QR image</p>
+            <p class="dz-sub">paste from clipboard, or <span class="dz-link">browse files</span></p>
+          </div>
+          <div class="dz-busy">
+            <span class="spinner"></span>
+            <span>Scanning…</span>
+          </div>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" hidden>
+
+        <div id="alertSlot"></div>
+
+        <div class="action-row" id="actionRow">
+          <button id="cameraBtn" class="btn primary"></button>
+          <button id="regionBtn" class="btn ghost"></button>
+        </div>
+
+        <div id="resultSlot"></div>
+      </section>
+
+      <section id="historyView" class="view" hidden>
+        <div class="search-box" id="searchBox">
+          <input type="text" id="searchInput" placeholder="Search scans" autocomplete="off" spellcheck="false">
+        </div>
+        <div id="historyList" class="history-list"></div>
+        <div class="history-foot" id="historyFoot">
+          <span id="historyCount" class="history-count"></span>
+          <button id="clearHistory" class="btn danger-ghost small"></button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="lib/jsqr.js"></script>
+  <script src="js/payload.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/popup.js"></script>
+</body>
+</html>

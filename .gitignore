@@ -1,0 +1,12 @@
+# Regenerable test artifacts (see test/make-camera-y4m.mjs, scripts/generate-icons.mjs)
+test/camera-qr.y4m
+test/shots/
+
+# Tooling
+node_modules/
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
+*.crx
+*.zip

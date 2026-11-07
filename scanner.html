@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Scanner · Live Camera</title>
+  <link rel="icon" href="icons/icon32.png">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/scanner.css">
+</head>
+<body class="scanner">
+  <div class="ambient" aria-hidden="true">
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="aurora a3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <button id="backBtn" class="icon-btn back-btn" aria-label="Back to scanner" title="Back to scanner" hidden></button>
+      <span class="brand-mark" id="brandMark"></span>
+      <span class="brand-name">QR <em>Scanner</em></span>
+      <span class="brand-tag">Live camera</span>
+    </div>
+    <div class="top-actions">
+      <button id="floatBtn" class="icon-btn" aria-label="Float window"></button>
+      <button id="soundBtn" class="icon-btn" aria-label="Toggle sound"></button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div class="finder-card" id="finderCard">
+      <video id="video" autoplay playsinline muted></video>
+
+      <div class="finder-overlay" id="finderOverlay">
+        <div class="vf-region">
+          <i class="vf-corner tl"></i><i class="vf-corner tr"></i>
+          <i class="vf-corner bl"></i><i class="vf-corner br"></i>
+          <div class="scanline"></div>
+        </div>
+        <div class="status-pill" id="statusPill">
+          <span class="dot"></span><span id="statusText">Starting camera…</span>
+        </div>
+        <div class="success-flash" id="successFlash"></div>
+      </div>
+
+      <div class="cam-error" id="camError" hidden>
+        <span class="ce-icon" id="ceIcon"></span>
+        <h2 id="ceTitle">Camera unavailable</h2>
+        <p id="ceMsg"></p>
+        <div class="ce-actions">
+          <button id="errUploadBtn" class="btn primary"></button>
+          <button id="retryBtn" class="btn ghost"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cam-controls" id="camControls">
+      <button id="flipBtn" class="btn ghost ctl"></button>
+      <button id="torchBtn" class="btn ghost ctl" hidden></button>
+      <button id="uploadBtn" class="btn ghost ctl"></button>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" hidden>
+
+    <div id="resultSlot"></div>
+
+    <p class="hint" id="hint">Point your camera at a QR code — it scans automatically</p>
+  </main>
+
+  <script src="lib/jsqr.js"></script>
+  <script src="js/payload.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/scanner.js"></script>
+</body>
+</html>
