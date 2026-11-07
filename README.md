@@ -6,6 +6,33 @@ A premium, privacy-first QR scanner for **Google Chrome** and **Chromium** brows
 
 ---
 
+## Screenshots
+
+Every image below is captured by the automated end-to-end suite running the real unpacked
+extension — no mockups or staged renders.
+
+### Select region — snip a QR code straight off the page
+
+Drag a box around any code on the active tab; the crop is captured, decoded and delivered
+with no manual screenshot, upload or paste. `Enter` grabs the whole screen, `Esc` cancels.
+
+<img src="screenshots/region-select.png" alt="Region selection overlay drawn around a QR code on a webpage, with a live size readout and keyboard hints" width="760">
+
+| **Result from the screen**<br>Source badge reads `Screen` | **Result from an image**<br>Type badge, Open link / Copy | **Floating window**<br>Detached, always on top |
+|:--:|:--:|:--:|
+| <img src="screenshots/region-result.png" alt="Popup showing a scanned link with source Screen and Open link / Copy actions" width="230"> | <img src="screenshots/popup-result.png" alt="Extension popup with a link result card showing Open link and Copy buttons" width="230"> | <img src="screenshots/float-window.png" alt="Detached floating window with Live camera and Scan screen buttons" width="230"> |
+| **Live delivery to the float**<br>Results arrive while it is open | **Searchable history**<br>Type badges, source, Undo | **Narrow viewport**<br>390 px wide, no overflow |
+| <img src="screenshots/float-result.png" alt="Floating window displaying a result card delivered from a region capture" width="230"> | <img src="screenshots/history.png" alt="History view listing scans of different payload types with a search field" width="230"> | <img src="screenshots/camera-mobile.png" alt="Camera scanner tab in a mobile-width viewport" width="230"> |
+
+### Live camera scanner
+
+A dedicated tab with viewfinder overlay, torch, front/rear flip and de-duplicated continuous
+decoding.
+
+<img src="screenshots/camera-scanner.png" alt="Camera scanner tab with a detected QR code, controls and result card" width="760">
+
+---
+
 ## Core features
 
 | Feature | What it does |
@@ -115,8 +142,9 @@ js/payload.js                Payload-type detection and entry factory
 lib/jsqr.js                  Bundled jsQR 1.4.0 decoder (offline)
 css/                         base.css · popup.css · scanner.css design system
 fonts/, icons/               Bundled Inter + JetBrains Mono, generated PNG icons
-scripts/                     Icon generator
+scripts/                     Icon + screenshot gallery generators
 test/                        Playwright end-to-end suite + fixtures
+screenshots/                 Curated captures shown in this README
 ```
 
 ## Development & testing
@@ -128,11 +156,18 @@ The suite loads the unpacked extension in a Chromium build, feeds a synthetic ca
 NODE_PATH="$(npm root -g)" node test/e2e.cjs
 ```
 
-68 assertions, including a check that the shipped manifest stays minimal. The 20 MB fake-camera fixture and screenshots are regenerable and git-ignored:
+68 assertions, including a check that the shipped manifest stays minimal. The 20 MB fake-camera fixture and raw captures are regenerable and git-ignored:
 
 ```bash
 node test/make-camera-y4m.mjs   # rebuilds test/camera-qr.y4m
 node scripts/generate-icons.mjs # rebuilds icons/
+```
+
+The screenshot gallery at the top of this file is built from the raw captures the suite drops
+in `test/shots/` (needs Python + Pillow):
+
+```bash
+python scripts/make-screenshots.py
 ```
 
 ---
