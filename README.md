@@ -139,7 +139,7 @@ node scripts/generate-icons.mjs # rebuilds icons/
 
 ## Credits
 
-- **Author:** [manjayofficial01](https://github.com/manjayofficial01-ui)
+- **Author:** [@manjayofficial01-ui](https://github.com/manjayofficial01-ui)
 - **Built with:** **"QoDuck"** — the stealth AI model.
 - **Decoding engine:** [jsQR](https://github.com/cozmo/jsQR) by Lazar Milinic (MIT), bundled locally.
 - **Typefaces:** Inter and JetBrains Mono, bundled for offline use.
